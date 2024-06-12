@@ -1,3 +1,2 @@
 #!/bin/bash
-#!/bin/bash
 (echo .; echo ..; ls -a1 | grep -v '^\.\/\.\?$' | sort -f) | awk '{if (NR==1 || NR==2) {print $0} else {printf "%s, ", $0}}' | sed 's/, $/\n/' | sed -r 's@([^/]+)$@\1/@g'
