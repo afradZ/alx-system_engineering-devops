@@ -1,3 +1,2 @@
 #!/bin/bash
 (ls -a1 | awk '{if (system("[[ -d " $0 " ]]") == 0) {print $0 "/"} else {print $0}}' | sort -f -k 1,1 | awk 'BEGIN{print "./,"; print "../,"} {if($0 != "./" && $0 != "../") print $0}' | paste -sd ", " - && echo "")
-
