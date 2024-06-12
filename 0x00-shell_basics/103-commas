@@ -1,2 +1,3 @@
 #!/bin/bash
 ls -a --group-directories-first | sort -f | awk 'BEGIN{ORS=", "} {print $0} END{ORS="\n"; print ""}' | sed 's/, $/\n/' | sed 's/[^,]*\.\([^,]*\.\.\)/\.\.\1/' | sed 's/\([^,]*\),\./\1, \.\//g' | sed 's/[^,]*\.\([^,]*\.\.\),\([^,]*\)\./\1 \2,\.\//g'
+
