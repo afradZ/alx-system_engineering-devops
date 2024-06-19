@@ -1,2 +1,2 @@
 #!/bin/bash
-env; declare -p; declare -F
+declare -p
