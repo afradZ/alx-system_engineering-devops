@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Installs HAProxy version 1.8 with the following configurations:
+#+    Enables management via the init script.
+#+    Distributes requests using a round-robin algorithm.
+
+apt-get update
+apt-get install -y haproxy
+
+printf %s "
+frontend afrad_front
+        bind *:80
+        mode http
+        default_backend afrad_back
+backend afrad_back
+        balance roundrobin
+        server 422105-web-01 107.23.64.103:80 check
+        server 422105-web-02 52.6.114.156:80 check
+" >> /etc/haproxy/haproxy.cfg
+
+echo "ENABLED=1" >> /etc/default/haproxy
+
+sudo service haproxy start
