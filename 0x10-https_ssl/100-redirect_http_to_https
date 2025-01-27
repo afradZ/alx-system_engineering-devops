@@ -36,7 +36,7 @@ defaults
 frontend afrad_front
         bind *:80
         mode http
-        http-request redirect scheme https if !{ ssl_fc }
+        http-request redirect scheme https code 301 unless { ssl_fc }
         http-request set-header X_Forwarded-Proto http
         default_backend afrad_back
 
@@ -45,8 +45,7 @@ frontend afrad_front-https
         http-request set-header X-Forwarded-Proto https
         default_backend afrad_back
 
-backend afrad_back
+backend clickviral-backend
         balance roundrobin
         server 422105-web-01 107.23.64.103:80 check
         server 422105-web-02 52.6.114.156:80 check
-
